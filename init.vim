@@ -104,4 +104,4 @@ let g:rustmft_options = ''
 
 set hidden
 let g:racer_cmd = "racer"
-let $RUST_SRC_PATH="/home/mura/tools/rustc-1.8.0/src"
+let $RUST_SRC_PATH="$HOME/tools/rustc-1.8.0/src"
