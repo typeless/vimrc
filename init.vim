@@ -2,6 +2,7 @@ call pathogen#infect()
 
 colorscheme molokai
 syntax on
+filetype plugin on
 "set background=dark
 
 set noexpandtab
@@ -15,28 +16,36 @@ set hlsearch
 set listchars=tab:>-,trail:_ list
 set noerrorbells vb t_vb=
 
-set cindent
-set cinkeys=0{,0},:,0#,!^F,<CR>
-set cinoptions=:0
+let mapleader = ","
+let maplocalleader = ","
 
-filetype plugin on
+"" Remember last cursor positions
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
+"" Tagbar
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_sort = 0
 
+"" MiniBufExplorer
 let g:miniBufExplMapWindowNavVim = 1 
 let g:miniBufExplMapWindowNavArrows = 1 
 let g:miniBufExplMapCTabSwitchBufs = 1 
 let g:miniBufExplModSelTarget = 1 
 
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
-
-let mapleader = ","
-let maplocalleader = ","
-
+"" Rainbow parents
 let g:rainbow_active = 1
+
+"" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " C
 set cscopeprg=/usr/bin/cscope
@@ -46,7 +55,11 @@ set csto=0
 set foldmethod=syntax
 set nofoldenable
 
-" Go
+set cindent
+set cinkeys=0{,0},:,0#,!^F,<CR>
+set cinoptions=:0
+
+"" Go
 "au FileType go nmap <Leader>s <Plug>(go-implements)
 "au FileType go nmap <Leader>i <Plug>(go-info)
 "au FileType go nmap <Leader>gd <Plug>(go-doc)
@@ -75,7 +88,7 @@ let g:go_highlight_structs = 1
 "let g:go_auto_type_info = 1
 let g:go_fmt_command = "goimports"
 
-" Rust
+"" Rust
 let g:rustc_path = $HOME.'/tools/rustc-1.8.0/src'
 let g:rust_conceal = 0
 let g:rust_conceal_mod_path = 0
