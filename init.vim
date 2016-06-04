@@ -88,6 +88,12 @@ let g:go_highlight_structs = 1
 "let g:go_auto_type_info = 1
 let g:go_fmt_command = "goimports"
 
+" Syntastic for Go (See vim-go README.md)
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+let g:go_list_type = "quickfix"
+
 "" Rust
 let g:rustc_path = $HOME.'/tools/rustc-1.8.0/src'
 let g:rust_conceal = 0
