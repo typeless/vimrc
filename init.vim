@@ -15,6 +15,7 @@ set nopaste
 set hlsearch 
 set listchars=tab:>-,trail:_ list
 set noerrorbells vb t_vb=
+set mouse-=a
 
 let mapleader = ","
 let maplocalleader = ","
