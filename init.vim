@@ -2,6 +2,7 @@ call pathogen#infect()
 
 colorscheme molokai
 syntax on
+syntax sync minlines=256
 filetype plugin on
 "set background=dark
 
@@ -16,6 +17,9 @@ set hlsearch
 set listchars=tab:>-,trail:_ list
 set noerrorbells vb t_vb=
 set mouse-=a
+set cursorline
+set lazyredraw
+set synmaxcol=128
 
 let mapleader = ","
 let maplocalleader = ","
@@ -56,24 +60,26 @@ set csto=0
 set foldmethod=syntax
 set nofoldenable
 
+set autoindent
+set smartindent
 set cindent
 set cinkeys=0{,0},:,0#,!^F,<CR>
 set cinoptions=:0
 
 "" Go
 "au FileType go nmap <Leader>s <Plug>(go-implements)
-"au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>i <Plug>(go-info)
 "au FileType go nmap <Leader>gd <Plug>(go-doc)
 "au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 
-"au FileType go nmap <leader>r <Plug>(go-run)
-"au FileType go nmap <leader>b <Plug>(go-build)
-"au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
 "au FileType go nmap <leader>c <Plug>(go-coverage)
 
 "au FileType go nmap <Leader>ds <Plug>(go-def-split)
 "au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-"au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
 "au FileType go nmap <Leader>e <Plug>(go-rename)
 
@@ -83,10 +89,10 @@ au FileType go nmap <Leader>r <Plug>(go-referrers)
 au FileType go nmap <Leader>i <Plug>(go-implements)
 au FileType go nmap <Leader>g <Plug>(go-def)
 
-let g:go_highlight_functions = 1
+"let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-"let g:go_auto_type_info = 1
+"let g:go_highlight_structs = 1
+let g:go_auto_type_info = 1
 let g:go_fmt_command = "goimports"
 
 " Syntastic for Go (See vim-go README.md)
