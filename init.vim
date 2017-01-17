@@ -20,8 +20,15 @@ set mouse-=a
 set cursorline
 set lazyredraw
 set synmaxcol=128
-set statusline+=%F
+
 set laststatus=2
+set statusline=%<%f\                     " Filename
+set statusline+=\ %c-%l/%L\ %o\ '%B'     " col-row/allrow (bytes)
+set statusline+=%w%h%m%r                 " Options
+set statusline+=\ [%{&ff}/%Y]            " Filetype
+set statusline+=\ [%{getcwd()}]          " Current dir
+set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+
 
 let mapleader = ","
 let maplocalleader = ","
