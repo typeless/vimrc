@@ -23,7 +23,6 @@ set synmaxcol=128
 
 set laststatus=2
 set statusline=%<%f\                     " Filename
-set statusline+=\ %c-%l/%L\ %o\ '%B'     " col-row/allrow (bytes)
 set statusline+=%w%h%m%r                 " Options
 set statusline+=\ [%{&ff}/%Y]            " Filetype
 set statusline+=\ [%{getcwd()}]          " Current dir
