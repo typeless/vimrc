@@ -20,6 +20,8 @@ set mouse-=a
 set cursorline
 set lazyredraw
 set synmaxcol=128
+set statusline+=%F
+set laststatus=2
 
 let mapleader = ","
 let maplocalleader = ","
@@ -67,10 +69,10 @@ set cinkeys=0{,0},:,0#,!^F,<CR>
 set cinoptions=:0
 
 "" Go
-"au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
-"au FileType go nmap <Leader>gd <Plug>(go-doc)
-"au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
@@ -81,7 +83,7 @@ au FileType go nmap <leader>t <Plug>(go-test)
 "au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
-"au FileType go nmap <Leader>e <Plug>(go-rename)
+au FileType go nmap <Leader>e <Plug>(go-rename)
 
 au FileType go nmap <Leader>c <Plug>(go-callers)
 au FileType go nmap <Leader>d <Plug>(go-callees)
@@ -101,20 +103,44 @@ let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 let g:go_list_type = "quickfix"
 
+let g:go_gocode_autobuild = 0
+let g:go_info_mode = 'guru'
+
+
 "" Rust
-let g:rustc_path = $HOME.'/tools/rustc-1.8.0/src'
+let g:rustc_path = $HOME.'/tools/rust/bin/rustc'
 let g:rust_conceal = 0
 let g:rust_conceal_mod_path = 0
 let g:rust_conceal_pub = 0
 let g:rust_recommended_style = 1
 let g:rust_fold = 1
 let g:rust_bang_comment_leader = 0
-let g:ftplugin_rust_source_path = $HOME.'/tools/rustc-1.8.0'
+let g:ftplugin_rust_source_path = $HOME.'/devel/rust/src'
 let g:rustfmt_command = 'rustfmt'
 let g:rustfmt_autosave = 1
 let g:rustfmt_fail_silently = 0
 let g:rustmft_options = ''
 
 set hidden
-let g:racer_cmd = "racer"
-let $RUST_SRC_PATH="$HOME/tools/rustc-1.8.0/src"
+let g:racer_cmd = $HOME."/.cargo/bin/racer"
+let $RUST_SRC_PATH=$HOME."/devel/rust/src"
+
+"" Cscope
+nnoremap <leader>fa :call cscope#findInteractive(expand('<cword>'))<CR>
+nnoremap <leader>l :call ToggleLocationList()<CR>
+" s: Find this C symbol
+nnoremap  <leader>fs :call cscope#find('s', expand('<cword>'))<CR>
+" g: Find this definition
+nnoremap  <leader>fg :call cscope#find('g', expand('<cword>'))<CR>
+" d: Find functions called by this function
+nnoremap  <leader>fd :call cscope#find('d', expand('<cword>'))<CR>
+" c: Find functions calling this function
+nnoremap  <leader>fc :call cscope#find('c', expand('<cword>'))<CR>
+" t: Find this text string
+nnoremap  <leader>ft :call cscope#find('t', expand('<cword>'))<CR>
+" e: Find this egrep pattern
+nnoremap  <leader>fe :call cscope#find('e', expand('<cword>'))<CR>
+" f: Find this file
+nnoremap  <leader>ff :call cscope#find('f', expand('<cword>'))<CR>
+" i: Find files #including this file
+nnoremap  <leader>fi :call cscope#find('i', expand('<cword>'))<CR>
